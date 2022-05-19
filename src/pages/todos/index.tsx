@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export type TDataTodos = {
     userId: number;
     id: number;
@@ -19,8 +21,10 @@ export async function getStaticProps() {
 export default function Todos({ data }: TTodosProps) {
     return (
         <div>
-            {data.map((item, index) => (
-                <p key={index}>{item.title}</p>
+            {data.map((todo, index) => (
+                <Link key={index} href={`/todos/${todo.id}`}>
+                    <p key={index}>{todo.title}</p>
+                </Link>
             ))}
         </div>
     );
